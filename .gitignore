@@ -1,7 +1,7 @@
 mysql/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
+front/.env
 # dependencies
 front/node_modules
 front/.pnp
