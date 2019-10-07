@@ -1,0 +1,15 @@
+current directory: /Users/s_matsushima/Desktop/workspace/rails/rails-mysql/api/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+/Users/s_matsushima/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20191006-92816-1np11ws.rb extconf.rb
+creating Makefile
+
+current directory: /Users/s_matsushima/Desktop/workspace/rails/rails-mysql/api/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/s_matsushima/Desktop/workspace/rails/rails-mysql/api/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/s_matsushima/Desktop/workspace/rails/rails-mysql/api/vendor/bundle/ruby/2.5.0/gems/bootsnap-1.4.5/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20191006-92816-1xgu08y/bootsnap
