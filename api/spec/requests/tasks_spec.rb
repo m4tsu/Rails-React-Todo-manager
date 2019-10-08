@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "TasksAPI", type: :request do
   it 'loads a task' do
     task = create(:task)
-    expect(task.title).to eq 'test_title1'
 
     # index
     get tasks_path
