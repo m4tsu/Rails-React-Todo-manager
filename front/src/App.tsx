@@ -1,6 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+import SampleComponent from './component/Sample';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +21,9 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
+      <SampleComponent
+        greeting='Heloo!!!!!'
+      />
     </div>
   );
 }
