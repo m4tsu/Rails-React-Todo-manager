@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
+
 import logo from './logo.svg';
 import './App.css';
 
-import SampleComponent from './component/Sample';
+import SampleContainer from './container/SampleContainer';
 
 const App: React.FC = () => {
   return (
@@ -21,9 +23,12 @@ const App: React.FC = () => {
           Learn React
         </a>
       </header>
-      <SampleComponent
-        greeting='Heloo!!!!!'
+      <SampleContainer
+        title='Container Title'
       />
+      <Link to={'/mypage'} >
+        Mypage
+      </Link>
     </div>
   );
 }

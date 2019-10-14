@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Paper, createStyles, makeStyles, Theme} from '@material-ui/core'
 
 interface SampleComponentProps {
   greeting: string;
@@ -30,7 +31,7 @@ class SampleComponent extends React.Component<SampleComponentProps, SampleCompon
     return (
       <div>
         {this.props.greeting}
-        <div>
+        <div color='primary'>
           count: {this.state.count}
         </div>
       </div>
