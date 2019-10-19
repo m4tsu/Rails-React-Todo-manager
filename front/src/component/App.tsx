@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
 
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 
-import SampleContainer from './container/SampleContainer';
+import SampleContainer from '../container/SampleContainer';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -22,13 +22,10 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
       <SampleContainer
         title='Container Title'
       />
-      <Link to={'/mypage'} >
-        Mypage
-      </Link>
     </div>
   );
 }

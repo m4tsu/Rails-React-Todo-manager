@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import { DEV_ROOT_URL } from '../environment'
+import { DEV_ROOT_URL } from '../../environment'
 // import { Paper, createStyles, makeStyles, Theme} from '@material-ui/core'
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,16 +12,16 @@ import { Paper } from '@material-ui/core';
 
 import Task, { TaskProps } from './Task';
 
-interface TasksProps {
+interface TaskListProps {
 }
-interface TasksState {
+interface TaskListState {
   tasks: {
     [index: number]: TaskProps
   }
 }
 
-class Tasks extends React.Component<TasksProps, TasksState> {
-  constructor(props: TasksProps) {
+class TaskList extends React.Component<TaskListProps, TaskListState> {
+  constructor(props: TaskListProps) {
     super(props);
     const initialTask = { 0: {
       id: 0,
@@ -76,4 +76,4 @@ class Tasks extends React.Component<TasksProps, TasksState> {
   }
 }
 
-export default Tasks;
+export default TaskList;
