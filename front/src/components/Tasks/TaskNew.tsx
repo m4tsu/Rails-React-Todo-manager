@@ -19,7 +19,7 @@ const FormGrid = styled(Grid)`
 
 interface newTask {
   title: string;
-  content: string;
+  detail: string;
 }
 
 interface Errors {
@@ -51,7 +51,7 @@ const TaskNew: FC = (props: any) => {
           <FormGrid item xs={6}>
             <Field
               label='Detail'
-              name='content'
+              name='detail'
               multiline
               rows='4'
               component={TextFieldRF}

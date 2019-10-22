@@ -32,11 +32,9 @@ const TaskList: FC = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
               <TableCell>Title</TableCell>
-              <TableCell>CONTENT</TableCell>
+              <TableCell>Detail</TableCell>
               <TableCell>STATUS</TableCell>
-              <TableCell>CREATED_AT</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
