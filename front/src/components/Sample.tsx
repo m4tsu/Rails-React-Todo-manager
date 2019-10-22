@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Paper, createStyles, makeStyles, Theme} from '@material-ui/core'
 
 interface SampleComponentProps {
   greeting: string;

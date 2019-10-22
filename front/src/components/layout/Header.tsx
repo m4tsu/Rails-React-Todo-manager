@@ -16,13 +16,13 @@ import Menu from '@material-ui/core/Menu';
 
 import styled from 'styled-components';
 
-const SAppBar = styled(AppBar)`
-  color: #fff;
+const StyledAppBar = styled(AppBar)`
+  color: #fafafa;
   font-weight: bold;
 `
 
-const STypography = styled(Typography)`
-  color: #fff;
+const StyledTypography = styled(Typography)`
+  color: #fafafa;
   flex-grow: 1;
   font-weight: 700;
 `
@@ -52,14 +52,14 @@ const MenuAppBar: React.FC = () => {
           label={auth ? 'Logout' : 'Login'}
         />
       </FormGroup> */}
-      <SAppBar position="static">
+      <StyledAppBar position="static">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
+            <Link to={'/'} style={{color: '#fafafa', height: '1em'}} ><MenuIcon /></Link>
           </IconButton>
-          <STypography variant="h6">
+          <StyledTypography variant="h6">
             Tasks
-          </STypography>
+          </StyledTypography>
           {auth && (
             <div>
               <IconButton
@@ -93,7 +93,7 @@ const MenuAppBar: React.FC = () => {
             </div>
           )}
         </Toolbar>
-      </SAppBar>
+      </StyledAppBar>
     </div>
   );
 }

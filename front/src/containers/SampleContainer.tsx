@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Paper, createStyles, makeStyles, Theme} from '@material-ui/core'
 import styled from 'styled-components';
 
-import SampleComponent from '../component/Sample';
+import SampleComponent from '../components/Sample';
 
 
 interface SampleContainerProps {
