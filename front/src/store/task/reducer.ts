@@ -6,7 +6,7 @@ import _ from 'lodash'
 export interface TaskProps {
   id: number;
   title: string | null;
-  content: string | null;
+  detail: string | null;
   status: string | null;
   created_at: string | null;
   updated_at: string | null;
@@ -20,7 +20,7 @@ const initialState: TasksState = {
   0: {
     id: 0,
     title: null,
-    content: null,
+    detail: null,
     status: null,
     created_at: null,
     updated_at: null

@@ -12,16 +12,14 @@ import { TaskProps } from '../../store/task/reducer'
 const Task: FC<TaskProps> = ({
   id,
   title,
-  content,
+  detail,
   status,
   created_at
 }) => (
   <TableRow>
-    <TableCell>{id}</TableCell>
     <TableCell>{title}</TableCell>
-    <TableCell>{content}</TableCell>
+    <TableCell>{detail}</TableCell>
     <TableCell>{status}</TableCell>
-    <TableCell>{created_at}</TableCell>
   </TableRow>
 )
 
