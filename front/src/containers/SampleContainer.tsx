@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Paper, createStyles, makeStyles, Theme} from '@material-ui/core'
-import SampleComponent from '../component/Sample';
+import styled from 'styled-components';
+
+import SampleComponent from '../components/Sample';
 
 
 interface SampleContainerProps {
@@ -12,28 +14,29 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     height: '200%',
     padding: theme.spacing(4),
     backgroundColor: theme.palette.background.default
-  },
-  inner: {
-    width: '80%',
-    minWidht: '420px',
-    minHeight: '420px',
-    margin: '0 auto',
-    padding: theme.spacing(2),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 }));
+
+const StyledPaper = styled(Paper)`
+  background-color: ${props => props.theme.palette.primary.main};
+  width: 80%;
+  min-width: 420px;
+  min-height: 420px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const SampleContainer = (props: SampleContainerProps) => {
   const classes = useStyles();
   return (
     <div className={classes.outer}>
-        <Paper className={classes.inner}>
+        <StyledPaper>
           <SampleComponent
             greeting='Hello!!!!'
           />
-        </Paper>
+        </StyledPaper>
       </div>
   );
 }
