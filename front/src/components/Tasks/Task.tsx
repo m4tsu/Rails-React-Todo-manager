@@ -1,26 +1,48 @@
-import React, { FC } from 'react';
+import React, { FC, SetStateAction } from 'react';
+import { useState, useCallback } from 'react';
+import { TaskProps } from '../../store/task/reducer'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { StyledButtonContained } from '../layout/atoms/buttons';
 
-import { TaskProps } from '../../store/task/reducer'
+import TaskEditModal from './TaskEditModal'
 
+interface taskRowProps {
+  task: TaskProps;
+  setModalTask(task: TaskProps): void;
+  openModal(): void;
+}
 
-const Task: FC<TaskProps> = ({
-  id,
-  title,
-  detail,
-  status,
-  created_at
-}) => (
-  <TableRow>
-    <TableCell>{title}</TableCell>
-    <TableCell>{detail}</TableCell>
-    <TableCell>{status}</TableCell>
+const Task: FC<taskRowProps> = (props) => {
+  // const [editTaskModalOpen, setEditTaskModalOpen] = useState(false)
+  const {task}= props
+  const closeEditTaskModal = () => {
+    // setEditTaskModalOpen(false)
+  }
+  const handleClick = () => {
+    // setEditTaskModalOpen(true)
+    props.openModal();
+    props.setModalTask(task);
+  }
+
+  return (
+  <TableRow key={task.id}>
+    <TableCell>{task.title}</TableCell>
+    <TableCell>{task.detail}</TableCell>
+    <TableCell>{task.status}</TableCell>
+    <TableCell>
+      <StyledButtonContained onClick={handleClick} variant='contained' color='primary'>編集</StyledButtonContained>
+      {/* <TaskEditModal
+        initialValues={task}
+        modalOpen={editTaskModalOpen}
+        closeModal={closeEditTaskModal}
+      /> */}
+    </TableCell>
   </TableRow>
-)
+)}
 
 export default Task;

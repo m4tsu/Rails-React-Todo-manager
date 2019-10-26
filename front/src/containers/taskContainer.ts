@@ -40,10 +40,23 @@ export const useTask = () => {
     }
   },[error, tasks])
 
+  const updateTask = useCallback(async (task) => {
+    try{
+      console.log(task)
+      // const patchParams = {title: task.title, detail: task.detail, status: task.satatus}
+      const response = await axios.patch(`${DEV_ROOT_URL}/tasks/${task.id}`, {task: task})
+      const responseTask = {[response.data.id]: response.data}
+      dispatch(TaskActions.updateTask(responseTask))
+    } catch (e) {
+      setError(e.message)
+    }
+  },[error, tasks])
+
   return {
     tasks,
     getTasks,
     postTask,
+    updateTask,
     loading,
     error,
     cancelToken
