@@ -36,11 +36,9 @@ const Task: FC<taskRowProps> = (props) => {
     <TableCell>{task.status}</TableCell>
     <TableCell>
       <StyledButtonContained onClick={handleClick} variant='contained' color='primary'>編集</StyledButtonContained>
-      {/* <TaskEditModal
-        initialValues={task}
-        modalOpen={editTaskModalOpen}
-        closeModal={closeEditTaskModal}
-      /> */}
+    </TableCell>
+    <TableCell>
+      <StyledButtonContained variant='contained' color="secondary">削除</StyledButtonContained>
     </TableCell>
   </TableRow>
 )}

@@ -11,7 +11,7 @@ import TextFieldRF from '../layout/forms/TextFieldRF'
 import { StyledButtonContained } from '../layout/atoms/buttons'
 import Grid from '@material-ui/core/Grid';
 import { flexbox } from '@material-ui/system';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps, reset } from 'redux-form';
 
 const FormGrid = styled(Grid)`
   margin-bottom: 15px;
@@ -72,7 +72,12 @@ const validate = (values: newTaskProps) => {
   return errors;
 }
 
+const afterSubmit = (result: any, dispatch: any) => {
+  dispatch(reset('newTaskForm'))
+}
+
 export default reduxForm({
   form: 'newTaskForm',
-  validate
+  validate,
+  onSubmitSuccess: afterSubmit
 })(TaskNew)

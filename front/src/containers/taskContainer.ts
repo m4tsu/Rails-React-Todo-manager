@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios, { CancelTokenSource } from 'axios';
 import _ from 'lodash';
 import { DEV_ROOT_URL } from '../environment'
+import { async } from 'q';
 
 export const useTask = () => {
   console.log('useTask')
@@ -38,7 +39,7 @@ export const useTask = () => {
     } catch (e) {
       setError(e.message)
     }
-  },[error, tasks])
+  },[error])
 
   const updateTask = useCallback(async (task) => {
     try{
@@ -50,7 +51,7 @@ export const useTask = () => {
     } catch (e) {
       setError(e.message)
     }
-  },[error, tasks])
+  },[error])
 
   return {
     tasks,

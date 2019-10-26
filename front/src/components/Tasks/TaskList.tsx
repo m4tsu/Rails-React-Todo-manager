@@ -56,7 +56,8 @@ const TaskList: FC = () => {
               <TableCell>Title</TableCell>
               <TableCell>Detail</TableCell>
               <TableCell>STATUS</TableCell>
-              <TableCell>edit</TableCell>
+              <TableCell></TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
