@@ -10,14 +10,22 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    render json: @task
+    @task = Task.new(task_params)
+    if @task.save
+      render json: @task, status: :ok
+    else
+      render json: {}, status: :internal_server_error
+    end
+
   end
 
   def update
-    @task = Task.find(params[:task][:id])
-    @task.update(task_params)
-    render json: @task
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      render json: @task, status: :ok
+    else
+      render json: {}, status: :internal_server_error
+    end
   end
 
   def destroy
