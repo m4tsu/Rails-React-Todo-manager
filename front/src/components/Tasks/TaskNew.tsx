@@ -28,7 +28,6 @@ interface Errors {
 
 const TaskNew: FC = (formProps: any) => {
   const { postTask, error } = useTask()
-  console.log(formProps)
   const {handleSubmit, pristine, submitting, invalid} = formProps
 
   return(

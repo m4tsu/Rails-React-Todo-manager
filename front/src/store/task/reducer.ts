@@ -29,16 +29,21 @@ const initialState: TasksState = {
 
 const taskReducer = reducerWithInitialState(initialState)
   .case(TaskActions.readTasks, (state: TasksState, tasks: TasksState) => {
-    console.log('fetch')
-    return (tasks)
+    console.log('fetch');
+    return tasks
   })
   .case(TaskActions.postTask, (state: TasksState, task: TasksState): TasksState => {
-    console.log('post')
-    return ({...state, ...task})
+    console.log('post');
+    return {...state, ...task}
   })
   .case(TaskActions.updateTask, (state: TasksState, task: TasksState): TasksState => {
-    console.log('update')
-    return({...state, ...task})
+    console.log('update');
+    return{...state, ...task}
+  })
+  .case(TaskActions.deleteTask, (state: TasksState, task_id: number): TasksState => {
+    console.log('delete');
+    delete state[task_id]
+    return {...state }
   })
 
 export default taskReducer;

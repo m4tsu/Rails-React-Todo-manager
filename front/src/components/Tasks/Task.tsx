@@ -1,6 +1,7 @@
 import React, { FC, SetStateAction } from 'react';
 import { useState, useCallback } from 'react';
 import { TaskProps } from '../../store/task/reducer'
+import { useTask } from '../../containers/taskContainer';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,18 +16,19 @@ interface taskRowProps {
   task: TaskProps;
   setModalTask(task: TaskProps): void;
   openModal(): void;
+  deleteTask(task_id: number): void;
 }
 
 const Task: FC<taskRowProps> = (props) => {
-  // const [editTaskModalOpen, setEditTaskModalOpen] = useState(false)
-  const {task}= props
-  const closeEditTaskModal = () => {
-    // setEditTaskModalOpen(false)
-  }
+  const { task, deleteTask }= props
+
   const handleClick = () => {
-    // setEditTaskModalOpen(true)
     props.openModal();
     props.setModalTask(task);
+  }
+
+  const handleDeleteClick = () => {
+    deleteTask(task.id);
   }
 
   return (
@@ -38,7 +40,7 @@ const Task: FC<taskRowProps> = (props) => {
       <StyledButtonContained onClick={handleClick} variant='contained' color='primary'>編集</StyledButtonContained>
     </TableCell>
     <TableCell>
-      <StyledButtonContained variant='contained' color="secondary">削除</StyledButtonContained>
+      <StyledButtonContained onClick={handleDeleteClick} variant='contained' color="secondary">削除</StyledButtonContained>
     </TableCell>
   </TableRow>
 )}

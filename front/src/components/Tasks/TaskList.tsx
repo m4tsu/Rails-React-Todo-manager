@@ -16,7 +16,7 @@ import TaskEditModal from './TaskEditModal';
 import { useTask } from '../../containers/taskContainer';
 
 const TaskList: FC = () => {
-  const { tasks, getTasks, loading, error, cancelToken } = useTask()
+  const { tasks, getTasks, deleteTask, loading, error, cancelToken } = useTask()
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false)
   const [modalTask, setModalTask] = useState({})
   useEffect(() => {
@@ -68,6 +68,7 @@ const TaskList: FC = () => {
                   task={task}
                   openModal={openModal}
                   setModalTask={provideTask}
+                  deleteTask={deleteTask}
                 />
               ))
             }

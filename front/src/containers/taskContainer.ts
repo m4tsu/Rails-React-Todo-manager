@@ -35,7 +35,9 @@ export const useTask = () => {
     try {
       const response = await axios.post(`${DEV_ROOT_URL}/tasks`, {task: newTask})
       const task = {[response.data.id]: response.data}
-      dispatch(TaskActions.postTask(task))
+      if (response.status === 200) {
+        dispatch(TaskActions.postTask(task))
+      }
     } catch (e) {
       setError(e.message)
     }
@@ -43,11 +45,24 @@ export const useTask = () => {
 
   const updateTask = useCallback(async (task) => {
     try{
-      console.log(task)
       // const patchParams = {title: task.title, detail: task.detail, status: task.satatus}
       const response = await axios.patch(`${DEV_ROOT_URL}/tasks/${task.id}`, {task: task})
       const responseTask = {[response.data.id]: response.data}
-      dispatch(TaskActions.updateTask(responseTask))
+      if (response.status === 200) {
+        dispatch(TaskActions.updateTask(responseTask))
+      }
+    } catch (e) {
+      setError(e.message)
+    }
+  },[error])
+
+  const deleteTask = useCallback(async (task_id: number) => {
+    try {
+      const response = await axios.delete(`${DEV_ROOT_URL}/tasks/${task_id}`)
+      console.log(response)
+      if (response.status === 200) {
+        dispatch(TaskActions.deleteTask(task_id))
+      }
     } catch (e) {
       setError(e.message)
     }
@@ -58,6 +73,7 @@ export const useTask = () => {
     getTasks,
     postTask,
     updateTask,
+    deleteTask,
     loading,
     error,
     cancelToken
