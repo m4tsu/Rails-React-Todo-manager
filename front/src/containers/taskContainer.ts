@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios, { CancelTokenSource } from 'axios';
 import _ from 'lodash';
 import { DEV_ROOT_URL } from '../environment'
+import { async } from 'q';
 
 export const useTask = () => {
   console.log('useTask')
@@ -34,16 +35,45 @@ export const useTask = () => {
     try {
       const response = await axios.post(`${DEV_ROOT_URL}/tasks`, {task: newTask})
       const task = {[response.data.id]: response.data}
-      dispatch(TaskActions.postTask(task))
+      if (response.status === 200) {
+        dispatch(TaskActions.postTask(task))
+      }
     } catch (e) {
       setError(e.message)
     }
-  },[error, tasks])
+  },[error])
+
+  const updateTask = useCallback(async (task) => {
+    try{
+      // const patchParams = {title: task.title, detail: task.detail, status: task.satatus}
+      const response = await axios.patch(`${DEV_ROOT_URL}/tasks/${task.id}`, {task: task})
+      const responseTask = {[response.data.id]: response.data}
+      if (response.status === 200) {
+        dispatch(TaskActions.updateTask(responseTask))
+      }
+    } catch (e) {
+      setError(e.message)
+    }
+  },[error])
+
+  const deleteTask = useCallback(async (task_id: number) => {
+    try {
+      const response = await axios.delete(`${DEV_ROOT_URL}/tasks/${task_id}`)
+      console.log(response)
+      if (response.status === 200) {
+        dispatch(TaskActions.deleteTask(task_id))
+      }
+    } catch (e) {
+      setError(e.message)
+    }
+  },[error])
 
   return {
     tasks,
     getTasks,
     postTask,
+    updateTask,
+    deleteTask,
     loading,
     error,
     cancelToken

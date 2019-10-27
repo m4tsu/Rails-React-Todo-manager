@@ -10,20 +10,28 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    render json: @task
+    @task = Task.new(task_params)
+    if @task.save
+      render json: @task, status: :ok
+    else
+      render json: {}, status: :internal_server_error
+    end
+
   end
 
   def update
     @task = Task.find(params[:id])
-    @task.update_attributes(params[:task])
-    render json: @task
+    if @task.update(task_params)
+      render json: @task, status: :ok
+    else
+      render json: {}, status: :internal_server_error
+    end
   end
 
   def destroy
     @task = Task.find(params[:id])
     if @task.destroy
-      head :no_content, status: :ok
+      render json: {}, status: :ok
     else
       render json: @task.errors, status: :unprocessable_entity
     end
@@ -34,7 +42,8 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(
       :title,
-      :detail
+      :detail,
+      :status,
     )
   end
 end

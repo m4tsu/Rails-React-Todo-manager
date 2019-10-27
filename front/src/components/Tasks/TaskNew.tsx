@@ -11,13 +11,13 @@ import TextFieldRF from '../layout/forms/TextFieldRF'
 import { StyledButtonContained } from '../layout/atoms/buttons'
 import Grid from '@material-ui/core/Grid';
 import { flexbox } from '@material-ui/system';
-import { Field, reduxForm, InjectedFormProps } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps, reset } from 'redux-form';
 
 const FormGrid = styled(Grid)`
   margin-bottom: 15px;
 `
 
-interface newTask {
+interface newTaskProps {
   title: string;
   detail: string;
 }
@@ -26,19 +26,13 @@ interface Errors {
   [key: string]: string;
 }
 
-const TaskNew: FC = (props: any) => {
+const TaskNew: FC = (formProps: any) => {
   const { postTask, error } = useTask()
-  console.log(props)
-  const {handleSubmit, pristine, submitting, invalid} = props
-
-  const onSubmit = (newTask: newTask) => {
-    console.log('submit')
-    postTask(newTask)
-  }
+  const {handleSubmit, pristine, submitting, invalid} = formProps
 
   return(
     <Paper style={{height: 300, width: 500, margin: '20px auto', padding: 20}}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(postTask)}>
         <Grid container direction='column'>
           <FormGrid item xs={6}>
             <Field
@@ -66,19 +60,23 @@ const TaskNew: FC = (props: any) => {
             </StyledButtonContained>
           </Grid>
         </Grid>
-
       </form>
     </Paper>
   )
 }
 
-const validate = (values: newTask) => {
+const validate = (values: newTaskProps) => {
   const errors: Errors = {}
   if(!values.title) errors.title = 'Task is required'
   return errors;
 }
 
+const afterSubmit = (result: any, dispatch: any) => {
+  dispatch(reset('newTaskForm'))
+}
+
 export default reduxForm({
-  form: 'taskNewForm',
-  validate
+  form: 'newTaskForm',
+  validate,
+  onSubmitSuccess: afterSubmit
 })(TaskNew)

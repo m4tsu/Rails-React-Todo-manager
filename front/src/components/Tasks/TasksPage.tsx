@@ -10,10 +10,10 @@ interface TasksPageProps extends RouteComponentProps<{}> {
 
 const TasksPage = (props: TasksPageProps) => {
   return (
-    <div>
+    <>
       <TaskNew/>
       <TaskList/>
-    </div>
+    </>
 
   )
 }

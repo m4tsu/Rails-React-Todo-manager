@@ -13,6 +13,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Container from '@material-ui/core/Container';
 
 import styled from 'styled-components';
 
@@ -45,7 +46,7 @@ const MenuAppBar: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       {/* <FormGroup>
         <FormControlLabel
           control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
@@ -53,48 +54,50 @@ const MenuAppBar: React.FC = () => {
         />
       </FormGroup> */}
       <StyledAppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <Link to={'/'} style={{color: '#fafafa', height: '1em'}} ><MenuIcon /></Link>
-          </IconButton>
-          <StyledTypography variant="h6">
-            Tasks
-          </StyledTypography>
-          {auth && (
-            <div>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem ><Link to={'/tasks'}>My tasks</Link></MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
+        <Container maxWidth='md'>
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <Link to={'/'} style={{color: '#fafafa', height: '1em'}} ><MenuIcon /></Link>
+            </IconButton>
+            <StyledTypography variant="h6">
+              Tasks
+            </StyledTypography>
+            {auth && (
+              <div>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={handleClose}>My account</MenuItem>
+                  <MenuItem ><Link to={'/tasks'}>My tasks</Link></MenuItem>
+                </Menu>
+              </div>
+            )}
+          </Toolbar>
+        </Container>
       </StyledAppBar>
-    </div>
+    </>
   );
 }
 

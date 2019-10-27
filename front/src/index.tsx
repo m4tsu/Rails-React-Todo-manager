@@ -27,11 +27,7 @@ ReactDOM.render(
       <StyledThemeProvider theme={theme}>
         <Provider store={Store}>
           <BrowserRouter>
-            <MenuAppBar/>
-            <Switch>
-              <Route exact path='/' component={App} />
-              <Route path='/tasks' component={TasksPage} />>
-            </Switch>
+            <App/>
           </BrowserRouter>
         </Provider>
       </StyledThemeProvider>
