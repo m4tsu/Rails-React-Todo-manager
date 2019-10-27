@@ -3,6 +3,8 @@ import { TaskActions } from './actions';
 
 import _ from 'lodash'
 
+export const statusOptions = ['waiting', 'working', 'done', 'pending']
+
 export interface TaskProps {
   id: number;
   title: string;

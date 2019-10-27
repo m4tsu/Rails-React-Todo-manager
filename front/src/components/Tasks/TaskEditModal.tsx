@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import _ from 'lodash';
 
 import { TaskProps } from '../../store/task/reducer'
+import { statusOptions } from '../../store/task/reducer'
 
 import styled from 'styled-components';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,6 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useTask } from '../../containers/taskContainer'
 
 import TextFieldRF from '../layout/forms/TextFieldRF'
+import SelectBox from '../layout/forms/SelectBox'
 import { StyledButtonContained } from '../layout/atoms/buttons'
 import Grid from '@material-ui/core/Grid';
 import { Field, reduxForm, InjectedFormProps, reset } from 'redux-form';
@@ -50,12 +52,9 @@ const TaskEditModal: FC<InjectedFormProps<updateTaskProps, editTaskProps> & edit
 
   return(
     <Dialog open={props.modalOpen} onClose={handleClose} fullWidth={true} maxWidth="sm" aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">edit task</DialogTitle>
+      <DialogTitle id="form-dialog-title">Edit task</DialogTitle>
       <form onSubmit={handleSubmit(submitTask)}>
         <DialogContent>
-          <DialogContentText>
-            edit して
-          </DialogContentText>
             <Grid container justify='center'>
               <FormGrid item xs={10}>
                 <Field
@@ -77,7 +76,8 @@ const TaskEditModal: FC<InjectedFormProps<updateTaskProps, editTaskProps> & edit
                 <Field
                   label='Status'
                   name='status'
-                  component={TextFieldRF}
+                  options={statusOptions}
+                  component={SelectBox}
                 />
               </FormGrid>
             </Grid>
