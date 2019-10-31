@@ -3,7 +3,20 @@ import { TaskActions } from './actions';
 
 import _ from 'lodash'
 
-export const statusOptions = ['waiting', 'working', 'done', 'pending']
+export const statusOptions = [
+  { value: 'waiting', label: '待機中' },
+  { value: 'working', label: '実施中' },
+  { value: 'done', label: '完了' },
+  { value: 'pending', label: '保留' }
+]
+
+export const taskFilters = [
+  { value: 'none', label: ''},
+  { value: 'waiting', label: '待機中' },
+  { value: 'working', label: '実施中' },
+  { value: 'done', label: '完了' },
+  { value: 'pending', label: '保留' }
+]
 
 export interface TaskProps {
   id: number;

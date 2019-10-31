@@ -2,19 +2,24 @@ import React, { FC, useState } from 'react';
 import _ from 'lodash';
 
 import styled from 'styled-components';
-import { Paper } from '@material-ui/core';
 
 import { useTask } from '../../containers/taskContainer'
 
-import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import { borders } from '@material-ui/system';
 import TextFieldRF from '../layout/forms/TextFieldRF'
 import { StyledButtonContained } from '../layout/atoms/buttons'
 import Grid from '@material-ui/core/Grid';
 import { flexbox } from '@material-ui/system';
 import { Field, reduxForm, InjectedFormProps, reset } from 'redux-form';
+import theme from '../../theme';
 
 const FormGrid = styled(Grid)`
   margin-bottom: 15px;
+`
+
+const BoxBorderBottom = styled(Box)`
+  border-bottom: solid 1px lightgray;
 `
 
 interface newTaskProps {
@@ -31,20 +36,20 @@ const TaskNew: FC = (formProps: any) => {
   const {handleSubmit, pristine, submitting, invalid} = formProps
 
   return(
-    <Paper style={{height: 300, width: 500, margin: '20px auto', padding: 20}}>
+    <BoxBorderBottom my={3} py={2} >
       <form onSubmit={handleSubmit(postTask)}>
-        <Grid container direction='column'>
-          <FormGrid item xs={6}>
+        <Grid container direction='column' justify='center'>
+          <FormGrid item xs={12} md={6}>
             <Field
               style={{margin: 40}}
-              label='Task'
+              label='タスク'
               name='title'
               component={TextFieldRF}
             />
           </FormGrid>
-          <FormGrid item xs={6}>
+          <FormGrid item xs={12} md={6}>
             <Field
-              label='Detail'
+              label='詳細'
               name='detail'
               multiline
               rows='4'
@@ -56,18 +61,18 @@ const TaskNew: FC = (formProps: any) => {
               type='submit'
               variant='contained'
               color='primary'
-              disabled={ pristine || submitting || invalid }>Create Task
+              disabled={ pristine || submitting || invalid }>タスクを追加
             </StyledButtonContained>
           </Grid>
         </Grid>
       </form>
-    </Paper>
+    </BoxBorderBottom>
   )
 }
 
 const validate = (values: newTaskProps) => {
   const errors: Errors = {}
-  if(!values.title) errors.title = 'Task is required'
+  if(!values.title) errors.title = 'Required'
   return errors;
 }
 

@@ -7,3 +7,13 @@ export const StyledButtonContained = styled(Button)`
   font-weight: bold;
   text-transform: none;
 `
+
+export const StyledButtonRound = styled(Button)`
+  color: #fafafa;
+  text-transform: none;
+  min-width: initial;
+  width: 44px;
+  height: 44px;
+  margin: 0 5px
+  border-radius: 50%;
+`

@@ -47,12 +47,6 @@ const MenuAppBar: React.FC = () => {
 
   return (
     <>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
       <StyledAppBar position="static">
         <Container maxWidth='md'>
           <Toolbar>

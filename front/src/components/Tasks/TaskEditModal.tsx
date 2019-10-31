@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { useTask } from '../../containers/taskContainer'
 
 import TextFieldRF from '../layout/forms/TextFieldRF'
-import SelectBox from '../layout/forms/SelectBox'
+import { SelectBoxOutlined } from '../layout/forms/SelectBox'
 import { StyledButtonContained } from '../layout/atoms/buttons'
 import Grid from '@material-ui/core/Grid';
 import { Field, reduxForm, InjectedFormProps, reset } from 'redux-form';
@@ -52,20 +52,20 @@ const TaskEditModal: FC<InjectedFormProps<updateTaskProps, editTaskProps> & edit
 
   return(
     <Dialog open={props.modalOpen} onClose={handleClose} fullWidth={true} maxWidth="sm" aria-labelledby="form-dialog-title">
-      <DialogTitle id="form-dialog-title">Edit task</DialogTitle>
+      <DialogTitle id="form-dialog-title">タスクの編集</DialogTitle>
       <form onSubmit={handleSubmit(submitTask)}>
         <DialogContent>
             <Grid container justify='center'>
               <FormGrid item xs={10}>
                 <Field
-                  label='Task'
+                  label='タスク'
                   name='title'
                   component={TextFieldRF}
                 />
               </FormGrid>
               <FormGrid item xs={10}>
                 <Field
-                  label='Detail'
+                  label='詳細'
                   name='detail'
                   multiline
                   rows='4'
@@ -74,23 +74,23 @@ const TaskEditModal: FC<InjectedFormProps<updateTaskProps, editTaskProps> & edit
               </FormGrid>
               <FormGrid item xs={10}>
                 <Field
-                  label='Status'
+                  label='ステータス'
                   name='status'
                   options={statusOptions}
-                  component={SelectBox}
+                  component={SelectBoxOutlined}
                 />
               </FormGrid>
             </Grid>
         </DialogContent>
         <DialogActions>
           <StyledButtonContained onClick={handleClose} variant='contained' color="secondary">
-            Cancel
+            キャンセル
           </StyledButtonContained>
           <StyledButtonContained
                   type='submit'
                   variant='contained'
                   color='primary'
-                  disabled={ pristine || submitting || invalid }>Update
+                  disabled={ pristine || submitting || invalid }> 更新
           </StyledButtonContained>
         </DialogActions>
       </form>
