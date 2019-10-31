@@ -1,5 +1,6 @@
 import { AppState } from '../store/store';
 import { TaskActions } from '../store/task/actions';
+import { TaskProps } from '../store/task/reducer';
 
 import { useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -8,6 +9,7 @@ import axios, { CancelTokenSource } from 'axios';
 import _ from 'lodash';
 import { DEV_ROOT_URL } from '../environment'
 import { async } from 'q';
+import { Task } from 'react-native';
 
 export const useTask = () => {
   console.log('useTask')
@@ -18,7 +20,6 @@ export const useTask = () => {
   const dispatch = useDispatch()
 
   const getTasks = useCallback(async () => {
-    console.log('get')
     setLoading(true)
     try {
       const response = await axios.get(`${DEV_ROOT_URL}/tasks`, {cancelToken: cancelToken.token})
@@ -68,12 +69,25 @@ export const useTask = () => {
     }
   },[error])
 
+  const updateTaskStatus = useCallback(async (task: TaskProps, newStatus: string) => {
+    try {
+      const response = await axios.patch(`${DEV_ROOT_URL}/tasks/${task.id}`, {task: {...task, status: newStatus}})
+      const responseTask = {[response.data.id]: response.data}
+      if (response.status === 200) {
+        dispatch(TaskActions.updateTask(responseTask))
+      }
+    } catch (e) {
+      setError(e.message)
+    }
+  },[])
+
   return {
     tasks,
     getTasks,
     postTask,
     updateTask,
     deleteTask,
+    updateTaskStatus,
     loading,
     error,
     cancelToken
