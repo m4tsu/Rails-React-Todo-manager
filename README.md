@@ -1,1 +1,1 @@
-# Rails-React-practice
+RailsをAPIサーバー、Reactでフロントをあれする
