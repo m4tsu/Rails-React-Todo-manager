@@ -1,26 +1,6 @@
 class Task < ApplicationRecord
-  def index
-    @tasks = Task.all
-    render json: @tasks
-  end
+  enum status: { waiting: 0, working: 1, done: 2, pending: 3 }
 
-  def create
-    @task = Task.create(params[:task])
-    render json: @task
-  end
-
-  def update
-    @task = Task.find(params[:id])
-    @task.update_attributes(params[:task])
-    render json: @task
-  end
-
-  def destroy
-    @task = Task.find(params[:id])
-    if @task.destroy
-      head :no_content, status: :ok
-    else
-      render json: @task.errors, status: :unprocessable_entity
-    end
-  end
+  validates :title, presence: true, length: { maximum: 256 }
+  validates :status, presence: true, inclusion: { in: Task.statuses.keys }
 end
